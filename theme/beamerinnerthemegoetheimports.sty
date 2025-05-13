@@ -74,6 +74,11 @@
     \tcbuselibrary{skins}
 }
 
+\DeclareOptionBeamer{algorithmicx}{
+    \RequirePackage{algorithmicx}
+    \RequirePackage{algpseudocode}
+}
+
 \ProcessOptionsBeamer\relax
 
 % Layout
@@ -290,14 +295,16 @@
 \floatname{listing}{Listing}
 % \AtEndEnvironment{listing}{\vspace{-14pt}}
 
-\DeclareFloatingEnvironment[
-    name=Algorithm,
-    listname={List of Algorithms},
-    placement=h,
-]{algorithm}
-\captionsetup[algorithm]{position=top} %,skip=0pt
-\floatname{algorithm}{Algorithm}
-% \AtEndEnvironment{algorithm}{\vspace{-14pt}}
+\ltx@ifpackageloaded{algorithmicx}{
+    \DeclareFloatingEnvironment[
+        name=Algorithm,
+        listname={List of Algorithms},
+        placement=h,
+    ]{algorithm}
+    \captionsetup[algorithm]{position=top} %,skip=0pt
+    \floatname{algorithm}{Algorithm}
+    % \AtEndEnvironment{algorithm}{\vspace{-14pt}}
+}{}
 
 \DeclareFloatingEnvironment[
     name=Query,
